@@ -1,29 +1,33 @@
+import { resolve } from "url";
 
 
 
 const list = ()=>{
     return $.ajax({
-        url:'/api/position/list',
+        url:'/api/show/list',
         success:(res)=>{
             return res
         }
     })
 }
 
-const save = (data)=>{
-    return $.ajax({
-        url:'/api/position/list/save',
-        type:'post',
-        data,  
-        success:(res)=>{
-            return res
-        }
+const save = ()=>{
+    return new Promise((resolve) => {
+        $('#save-form').ajaxSubmit({
+            url: '/api/show/list/save',
+            type: 'POST',
+            success: (results) => {
+                resolve(results)
+            },
+            error: function (e) { console.log('提交失败') } //提交失败执行的函数
+        })
     })
+    
 }
 
 const remove = (data)=>{
     return $.ajax({
-        url:'/api/position/remove',
+        url:'/api/show/remove',
         type:'get',
         data,  
         success:(res)=>{
@@ -34,7 +38,7 @@ const remove = (data)=>{
 
 const listone = (data)=>{
     return $.ajax({
-        url:'/api/position/listone',
+        url:'/api/show/listone',
         type:'get',
         data,
         success:(res)=>{
@@ -45,8 +49,40 @@ const listone = (data)=>{
 
 const alter = (data)=>{
     return $.ajax({
-        url:'/api/position/alter',
+        url:'/api/show/alter',
         type:'post',
+        data,
+        success:(res)=>{
+            return res
+        }
+    })
+}
+
+const find = (data)=>{
+    return $.ajax({
+        url:'/api/show/find',
+        type:'get',
+        data,
+        success:(res)=>{
+            return res
+        }
+    })
+}
+const nextpage = (data)=>{
+    return $.ajax({
+        url:'/api/show/nextpage',
+        type:'get',
+        data,
+        success:(res)=>{
+            return res
+        }
+    })
+}
+
+const prepage = (data)=>{
+    return $.ajax({
+        url:'/api/show/prepage',
+        type:'get',
         data,
         success:(res)=>{
             return res
@@ -58,5 +94,8 @@ export default {
     save,
     remove,
     alter,
-    listone
+    listone,
+    find,
+    nextpage,
+    prepage
 }
