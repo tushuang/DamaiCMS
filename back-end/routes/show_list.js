@@ -13,7 +13,7 @@ router.get('/remove',show_controller.remove)
 
 router.get('/listone',show_controller.listone)
 
-router.post('/alter',show_controller.alter)
+router.post('/alter',fileUpload, show_controller.alter)
 
 router.get('/find',show_controller.find)
 

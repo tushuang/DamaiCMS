@@ -49,7 +49,9 @@ const remove = async ({id}) => { //从数据库里查找数据  remove只传过�
     let _row = await listone({id})
     return ShowModel.deleteOne({ _id: id }).
     then((results) => {
-        fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
+        if(_row.showPoster){
+            fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
+        }
         return results
     }). 
     catch((err) => {
@@ -67,9 +69,16 @@ const listone = ({id})=>{
     })
 }
 
-const alter = (body)=>{
+const alter = async (body)=>{
     //更新数据库里的数据
-    return ShowModel.updateOne({ _id: body.id }, { ...body }) //id不会存入数据库
+    let _id = body.id //找到传入的id值
+    let _row = await listone({id:_id})  //根据id值 在数据库中找到改文件
+    //如果用户不重新上传图片 body上的showPoster属性为空 删除后不更新body上的showPoster属性
+    if(!body.showPoster) delete body.showPoster  
+    if(_row.showPoster && body.showPoster){
+        fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
+    }
+    return ShowModel.updateOne({ _id: body.id }, { ...body }) //id不会存入数据库 更新数据库里的数据
       .then((result)=>{
         return result       //渲染好后再给前端
       })

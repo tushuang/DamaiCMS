@@ -49,7 +49,7 @@ const _activeLink = (route)=>{
 
 bus.on('go',(path,body={},params)=>{ //给req身上挂载 实现页面的交互
     router.go(path,body)
-    if(params.callback) params.callback()
+    if(params) params.callback()
 })
 // bus.on('back',(path)=>{
 //     router.go(path)

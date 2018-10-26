@@ -155,13 +155,10 @@ const handleImg = ()=>{
         reads.onload=function (e) {
             _img.src=this.result;
             $(_img).css({
-                'width':"90px",
-                'height':"120px"
+                'width':"78px",
+                'height':"78px"
             })
-
-
-        };
-
+        }
     }
     window.changepic = changepic;
 }
@@ -184,10 +181,13 @@ const alterFormEvent = ()=>{
     $('#alter-form').submit(async function(e){
         e.preventDefault()
         //发送ajax请求 后端更新数据库
-        let _params = qs.parse($(this).serialize()) 
-        console.log(_params)
-        let data = await show_models.alter(_params)
-        handleTip(data)
+        // let _params = qs.parse($(this).serialize()) 
+        // console.log(_params)
+        // let data = await show_models.alter(_params)
+        // handleTip(data)
+        let _data = await show_models.alter()
+        console.log(_data,"00")
+        handleTip(_data)
     })
     $('#alter-form #back').on('click',function(){
         bus.emit('back')

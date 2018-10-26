@@ -48,13 +48,24 @@ const listone = (data)=>{
 }
 
 const alter = (data)=>{
-    return $.ajax({
-        url:'/api/show/alter',
-        type:'post',
-        data,
-        success:(res)=>{
-            return res
-        }
+    // return $.ajax({
+    //     url:'/api/show/alter',
+    //     type:'post',
+    //     data,
+    //     success:(res)=>{
+    //         return res
+    //     }
+    // })
+
+    return new Promise((resolve) => {
+        $('#alter-form').ajaxSubmit({
+            url: '/api/show/alter',
+            type: 'POST',
+            success: (results) => {
+                resolve(results)
+            },
+            error: function (e) { console.log('提交失败') } //提交失败执行的函数
+        })
     })
 }
 

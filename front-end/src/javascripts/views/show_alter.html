@@ -4,8 +4,22 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal" id="alter-form">
+    <form class="form-horizontal" id="alter-form" enctype="multipart/form-data">
         <div class="box-body">
+                <div class="form-group">
+                        <label for="showPoster" class="col-sm-2 control-label">海报</label>
+                        <div class="col-sm-10">
+                            <!-- <input type="button" id="btn" value="点我上传"><span id="text">请上传图片</span>
+                            <input type="file"  onchange="changepic(this)"  name="showPoster" id="showPoster">
+                            <img src="http://localhost:3000{{data.showPoster}}"   id="showImg"  > -->
+                            <span id="file" >
+                                <input type="file" accept="image/*"  name="showPoster" id="showPoster" onchange="changepic(this)">
+                                <img src="http://localhost:3000{{data.showPoster}}" width="78" height="78" id="showImg" alt="">
+                            </span>
+                        </div>
+                        
+                
+                    </div>
             <div class="form-group">
                 <label for="showItem" class="col-sm-2 control-label">演出主题</label>
 
@@ -48,14 +62,7 @@
                     <input type="text" class="form-control" value="{{data.ticketPrice}}"  name="ticketPrice" id="ticketPrice" placeholder="请输入票价">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="showPoster" class="col-sm-2 control-label">海报</label>
-                <div class="col-sm-10" id="file">
-                    <input type="button" id="btn" value="点我上传"><span id="text">请上传图片</span>
-                    <input type="file"  onchange="changepic(this)"  name="showPoster" id="showPoster">
-                    <img src="http://localhost:3000{{data.showPoster}}" width="90" height="120"  id="showImg"  >
-                </div>
-            </div>
+
 
             <input type="hidden" name = "id" value="{{data._id}}"> 
         </div>
