@@ -14,13 +14,10 @@ const _init = () => {
 
     router = new SMERouter('router-view')  //决定放入哪个模块
     //插入一个中间件根据地址栏的hash值来给导航加上样式
-
-    
-
     router.use((req,res,next)=>{
         _activeLink(req.route)
     })
-
+    // 所有的页面都会匹配到这个
     router.route('/',page_header_render)
 
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
