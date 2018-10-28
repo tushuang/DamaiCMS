@@ -48,15 +48,6 @@ const listone = (data)=>{
 }
 
 const alter = (data)=>{
-    // return $.ajax({
-    //     url:'/api/show/alter',
-    //     type:'post',
-    //     data,
-    //     success:(res)=>{
-    //         return res
-    //     }
-    // })
-
     return new Promise((resolve) => {
         $('#alter-form').ajaxSubmit({
             url: '/api/show/alter',
@@ -79,20 +70,9 @@ const find = (data)=>{
         }
     })
 }
-const nextpage = (data)=>{
+const listLimit = (data)=>{
     return $.ajax({
-        url:'/api/show/nextpage',
-        type:'get',
-        data,
-        success:(res)=>{
-            return res
-        }
-    })
-}
-
-const prepage = (data)=>{
-    return $.ajax({
-        url:'/api/show/prepage',
+        url:'/api/show/listLimit',
         type:'get',
         data,
         success:(res)=>{
@@ -107,6 +87,5 @@ export default {
     alter,
     listone,
     find,
-    nextpage,
-    prepage
+    listLimit
 }

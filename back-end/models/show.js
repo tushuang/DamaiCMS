@@ -15,8 +15,8 @@ var ShowModel = mongoose.model('shows', new mongoose.Schema({
     showPoster:String
 }));
 
-const list = () => {  //从数据库里查找数据
-   return ShowModel.find({}).limit(5).sort({newTime: -1}) //{}表示查询所有的数据
+const list = (_filter={}) => {  //从数据库里查找数据
+   return ShowModel.find(_filter).sort({newTime: -1}). //{}表示查询所有的数据
           then((results)=>{  
             return results
           }).
@@ -45,12 +45,20 @@ const save = ( body )=>{
 
 }
 
-const remove = async ({id}) => { //从数据库里查找数据  remove只传过来一个id 没有showPoster
+const remove = async ({id,pageNo,pageSize,keyword=''}) => { //从数据库里查找数据  remove只传过来一个id 没有showPoster
     let _row = await listone({id})
     return ShowModel.deleteOne({ _id: id }).
-    then((results) => {
+    then(async(results) => {
+        let fillter = await find({keyword})
+        let all_item = await list()
+        let _isBack = (pageNo-1)*pageSize >= (keyword?fillter.length:all_item.length)  //all_item.length 是删除之后的数据
+        console.log(_isBack,!!keyword)
         if(_row.showPoster){
             fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
+        }
+        results = {
+            results,
+            isBack:_isBack
         }
         return results
     }). 
@@ -70,6 +78,7 @@ const listone = ({id})=>{
 }
 
 const alter = async (body)=>{
+    
     //更新数据库里的数据
     let _id = body.id //找到传入的id值
     let _row = await listone({id:_id})  //根据id值 在数据库中找到改文件
@@ -77,6 +86,10 @@ const alter = async (body)=>{
     if(!body.showPoster) delete body.showPoster  
     if(_row.showPoster && body.showPoster){
         fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
+    }
+    if(body.updata == "on"){
+        let _timestamp = Date.now()
+        body.newTime = _timestamp
     }
     return ShowModel.updateOne({ _id: body.id }, { ...body }) //id不会存入数据库 更新数据库里的数据
       .then((result)=>{
@@ -99,45 +112,52 @@ const find = ({keyword})=>{
             {showTime: {$regex: keyword, $options: '$i'}}
           ]
     }
-    // var count = 0
-    // local.count(_filter, function (err, doc) { // 查询总条数（用于分页）
-    //   if (err) {
-    //     console.log(err)
-    //   } else {
-    //     count = doc
-    //   }
-    // })
-    return ShowModel.find(_filter).limit(5)
+    return ShowModel.find(_filter)
     .sort({newTime: -1})  //排序
     .then((result)=>{
-        return result       //渲染好后再给前端
+        console.log('find:',result)
+        return result     
       }).catch((err)=>{
         return false
     })
 
 }
 
-const prepage = async ({id,count})=>{
-    console.log(id,count)
-    let _row = await listone({id})
-    let newTime = _row.newTime
-    return ShowModel.find({newTime: {$gt: newTime}}).sort({newTime: -1}).skip()
-        .limit(5)
+const listLimit = async ({
+    pageNo,
+    pageSize,
+    keyword
+}) => {
+    console.log(pageNo,pageSize,keyword)
+    let _filter = keyword? {
+        $or: [  // 多字段同时匹配
+            {showItem: {$regex: keyword}},
+            {showStart: {$regex: keyword, $options: '$i'}}, //  $options: '$i' 忽略大小写
+            {showSite: {$regex: keyword, $options: '$i'}},
+            {advanceTicket: {$regex: keyword, $options: '$i'}},
+            {ticketPrice: {$regex: keyword, $options: '$i'}},
+            {showTime: {$regex: keyword, $options: '$i'}}
+          ]
+    }:{}
+    const allitem = await list(_filter)
+    return ShowModel.find(_filter).sort({
+            newTime: -1
+        }).skip((pageNo - 1) * pageSize)
+        .limit(~~pageSize)
         // .sort({newTime: -1})
-        .then((result)=>{
+        .then((result) => {
+            result = {
+                result,
+                pages: {
+                    pageNo, //第几页
+                    pageTotal: Math.ceil((allitem.length) / pageSize), //总共有几页
+                    pageSize, //前端需要的条数
+                    showNum: allitem.length, //所有的条数
+                    keyword:keyword?keyword:""
+                }
+            }
             return result
-        }).catch((err)=>{
-            return false
-        })
-}
-const nextpage = async ({id})=>{
-    let _row = await listone({id})
-    let newTime = _row.newTime
-    return ShowModel.find({newTime: {$lt: newTime}}).limit(5)
-        .sort({newTime: -1})
-        .then((result)=>{
-            return result
-        }).catch((err)=>{
+        }).catch((err) => {
             return false
         })
 }
@@ -149,6 +169,5 @@ module.exports = {
     listone,
     alter,
     find,
-    prepage,
-    nextpage
+    listLimit
 }

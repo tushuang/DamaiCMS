@@ -8,7 +8,7 @@ module.exports = {
     mode:'development',
     entry:{
         app:PATH.resolve(__dirname,'../src/javascripts/app.js'),
-        login:PATH.resolve(__dirname,'../src/javascripts/login.js')
+        admin:PATH.resolve(__dirname,'../src/javascripts/admin.js')
     },
     output:{
         path:PATH.resolve(__dirname,'../dev'),
@@ -34,13 +34,14 @@ module.exports = {
             template:'./src/index.html',
             filename:'index.html',
             // inject:false
-            hash:true
+            hash:true,
+            chunks:['app']
         }),
         new HtmlWebpackPlugin({
-            template:'./src/login.html',
-            filename:'login.html',
+            template:'./src/admin.html',
+            filename:'admin.html',
             hash:true,
-            chunks:['login']
+            chunks:['admin']
         }),
         new CopyWebpackPlugin([{  
             from: PATH.resolve(__dirname,'../src/static'),

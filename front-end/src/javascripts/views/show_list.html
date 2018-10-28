@@ -27,7 +27,7 @@
           <th>票价</th>
           <th style="width: 140px">操作</th>
         </tr>
-        {{each data}}
+        {{each data.result}}
         <tr data-id="{{$value._id}}">
           <td>{{$index}}</td>
           <td>{{$value.showItem}}</td>
@@ -52,9 +52,11 @@
     </div>
     <div class="box-footer clearfix">
       <ul class="pagination pagination-sm no-margin pull-right">
-        <li><a href="javascript:;" id="prepage" >&laquo;</a></li>
-        <li class="active"><a  id="pageNum" href="javascript:;">1</a></li>
-        <li><a href="javascript:;" id="nextpage" >&raquo;</a></li>
+        <li><a href="#/list_limit?pageNo={{if data.pages.pageNo>1}}{{data.pages.pageNo-1}}{{else}}{{data.pages.pageNo}}{{/if}}&keyword={{data.pages.keyword}}" id="prepage" >&laquo;</a></li>
+        <% for( var i=0; i < data.pages.pageTotal; i++) {%>
+        <li class="{{if data.pages.pageNo== i+1}}active{{/if}}"><a href="#/list_limit?pageNo=<%= i+1 %>&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=i+1%></a></li>
+        <% } %>
+        <li><a href="#/list_limit?pageNo={{if data.pages.pageNo==data.pages.pageTotal}}{{data.pages.pageTotal}}{{else}}{{~~data.pages.pageNo+1}}{{/if}}&&keyword={{data.pages.keyword}}" id="nextpage" >&raquo;</a></li>
       </ul>
     </div>
 </div>

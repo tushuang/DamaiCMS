@@ -1,0 +1,78 @@
+<!-- 登录界面 -->
+
+{{if type == 'signin'}}
+<form id="signIn" class="container offset1 loginform">
+        <div class="owl-login">
+          <div class="hand"></div>
+          <div class="hand hand-r"></div>
+          <div class="arms">
+            <div class="arm"></div>
+            <div class="arm arm-r"></div>
+          </div>
+        </div>
+        <div class="pad">
+          <!-- <input type="hidden" name="_csrf" value="9IAtUxV2CatyxHiK2LxzOsT6wtBE6h8BpzOmk="> -->
+          <div class="control-group">
+            <div class="controls">
+              <label for="email" class="control-label fa fa-envelope"></label>
+              <input required  type="email" name="email" placeholder="Email" tabindex="1" autofocus="autofocus"
+                class="form-control input-medium">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <label for="password" class="control-label fa fa-asterisk"></label>
+              <input required  type="password" name="password" placeholder="Password" tabindex="2" class="form-control input-medium addAnimation">
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="#" tabindex="5" class="btn pull-left btn-link text-muted">Forgot password?</a>
+          <a href="#" tabindex="6" class="btn btn-link text-muted" data-type='signup'>注册</a>
+          <button type="submit" tabindex="4" class="btn btn-primary">登录</button>
+        </div>
+      </form>
+      {{else}}
+<!-- 注册界面 -->
+      <form  id="signUp" class="container offset1 loginform">
+          <div class="owl-login">
+            <div class="hand"></div>
+            <div class="hand hand-r"></div>
+            <div class="arms">
+              <div class="arm"></div>
+              <div class="arm arm-r"></div>
+            </div>
+          </div>
+          <div class="pad">
+            <!-- <input type="hidden" name="_csrf" value="9IAtUxV2CatyxHiK2LxzOsT6wtBE6h8BpzOmk="> -->
+            
+            <div class="control-group">
+                <div class="controls">
+                  <label for='name' class="control-label fa fa-user"></label>
+                  <input required  type="text" name="name" placeholder="Name" tabindex="1" autofocus="autofocus"
+                    class="form-control input-medium">
+                </div>
+              </div>
+
+            <div class="control-group">
+              <div class="controls">
+                <label for="email" class="control-label fa fa-envelope"></label>
+                <input required  type="email" name="email" placeholder="Email" tabindex="1" autofocus="autofocus"
+                  class="form-control input-medium">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <label for="password" class="control-label fa fa-asterisk"></label>
+                <input required id="password" type="password" name="password" placeholder="Password" tabindex="2" class="form-control input-medium addAnimation">
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <a href="#" tabindex="5" class="btn pull-left btn-link text-muted">Forgot password?</a>
+            <button type="submit" tabindex="4" class="btn btn-primary">注册</button>
+            <a href="#" tabindex="6"   class="btn btn-link text-muted" data-type='signin'>登录</a>
+            
+          </div>
+        </form>
+{{/if}}

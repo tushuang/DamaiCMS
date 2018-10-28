@@ -4,8 +4,16 @@ var router = express.Router();
 const fileUpload = require('../middleware/fileUpload')
 const show_controller = require('../controller/show')
 
+const setResHeader = (req,res,next)=>{
+    res.set('content-type', 'application/json; charset=utf8')
+    next()
+}
+
+// 为/show中所有的路由都使用这个中间件
+router.use(setResHeader)
+
 /* GET users listing. */
-router.get('/list', show_controller.list)
+// router.get('/list', show_controller.list)
 
 router.post('/list/save', fileUpload , show_controller.save)
 
@@ -17,8 +25,7 @@ router.post('/alter',fileUpload, show_controller.alter)
 
 router.get('/find',show_controller.find)
 
-router.get('/prepage',show_controller.prepage)
+router.get('/listLimit',show_controller.listLimit)
 
-router.get('/nextpage',show_controller.nextpage)
 
 module.exports = router;  
