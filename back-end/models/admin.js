@@ -9,7 +9,8 @@ var adminModel = mongoose.model('users', new mongoose.Schema({
     password:String,
     creatTime:String,
     formatTime:String,
-    portrait:String
+    portrait:String,
+    level:String
 }));
 
 
@@ -32,7 +33,8 @@ const signup = (body)=>{
         password:_password,
         creatTime:_timestamp,
         portrait:'/showPoster/default1.png',
-        formatTime:moment.format("YYYY-MM-DD, hh:mm")
+        formatTime:moment.format("YYYY-MM-DD, hh:mm"),
+        level:5
     }).save()
     .then((result)=>{
         return result

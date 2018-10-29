@@ -22,8 +22,22 @@ const exit = async (req,res)=>{
     res.render('user',{code:200,data:JSON.stringify('退出成功')})
 }
 
+const isAllow = async (req,res)=>{
+    res.set('content-type', 'application/json; charset=utf8')
+    const _data = await user_model.getUserInfo(req.session.userid)
+    const _isAllow = await user_model.isAllow()[req.query.page]
+    if(_data.level >= _isAllow ){
+        res.render('user',{code:200,data:JSON.stringify('允许操作')})
+    }else{
+        res.render('user',{code:205,data:JSON.stringify('权限不够')})
+    }
+
+}
+
+
 module.exports = {
     isSignIn,
     getUserInfo,
-    exit
+    exit,
+    isAllow
 }

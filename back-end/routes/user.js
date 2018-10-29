@@ -13,5 +13,6 @@ router.use(setResHeader)
 router.get('/isSignIn',user_controller.isSignIn)
 router.get('/getUserInfo',userSigninAuth,user_controller.getUserInfo)
 router.get('/exit',user_controller.exit)
+router.get('/isAllow',userSigninAuth,user_controller.isAllow)
 
 module.exports = router;  

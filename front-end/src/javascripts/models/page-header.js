@@ -6,15 +6,12 @@ import URL from 'url'
 const pageMes = (url,preurl)=>{
     let urlInfo = URL.parse(url)
     let _search = URL.parse(preurl).search
-    console.log(URL.parse(preurl))
     let _url = urlInfo.pathname
     let _data = {
         '/home':{
             title:'首页',
             description:'',
-            list:[
-               
-            ]
+            list:[]
         },
         '/list_limit':{
             title:'演出列表',

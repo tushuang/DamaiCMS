@@ -5,8 +5,10 @@
 <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 */
 import map_template from '../views/map.html'
-
+import {isAllow} from '../util/isAllow'
 const map = async (req,res)=>{
+
+    isAllow('map')
     await res.render(map_template)
     if(window.AMap){
         onApiLoaded()

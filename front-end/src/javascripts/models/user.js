@@ -26,8 +26,19 @@ const exit = ()=>{
     })
 }
 
+const isAllow = ( page )=>{
+    return $.ajax({
+        url:'api/user/isAllow',
+        data:{page},
+        success:(data)=> {
+            return data
+        }
+    })
+}
+
 export default {
     isSignIn,
     getUserInfo,
-    exit
+    exit,
+    isAllow
 }
