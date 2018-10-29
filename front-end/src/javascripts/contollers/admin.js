@@ -7,7 +7,7 @@ import handleTip from '../util/handleTip'
 // 初始化动作
 const init = () => {
     // 渲染视图
-    render('signup')
+    render('signin')
     // 绑定事件
     bindEvent()
 }
@@ -49,7 +49,10 @@ const bindEvent = () => {
 // 登录 判断密码是否正确 正确返回用户名 在cookie中存入值 记录用户登录的状态
     $('#login').on('submit','#signIn',async function (e) {
         e.preventDefault()  // 阻止表单的默认提交事件
+        // 删除本地cookie值 防止重新登录时 不会重新刷新cookie
+        // $.cookie('connect.sid',null)
         let _param = $(this).serialize()
+        $.cookie('connect.sid', { expires: -1 })
         console.log(qs.parse(_param))
         let _data = await admin_model.signIn(qs.parse(_param))
         console.log(_data.code)
@@ -57,12 +60,11 @@ const bindEvent = () => {
             // 表示登录 存一个
             zeroModal.success({
                 content:'登录成功 确认跳往首页',
-                onClosed:()=>{
-                    localStorage.setItem('userStatu',"signin") 
+                onClosed:()=>{ 
                     location.href='/'
                 }
             })  
-        }else if(_data.code == 203){
+        }else if(_data.code == 202){
             zeroModal.error({
                 content:_data.data
             })  

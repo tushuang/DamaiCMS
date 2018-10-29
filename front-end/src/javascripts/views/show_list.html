@@ -53,9 +53,46 @@
     <div class="box-footer clearfix">
       <ul class="pagination pagination-sm no-margin pull-right">
         <li><a href="#/list_limit?pageNo={{if data.pages.pageNo>1}}{{data.pages.pageNo-1}}{{else}}{{data.pages.pageNo}}{{/if}}&keyword={{data.pages.keyword}}" id="prepage" >&laquo;</a></li>
+        {{if data.pages.pageTotal < 5}}
+
         <% for( var i=0; i < data.pages.pageTotal; i++) {%>
-        <li class="{{if data.pages.pageNo== i+1}}active{{/if}}"><a href="#/list_limit?pageNo=<%= i+1 %>&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=i+1%></a></li>
+        <li class="{{if data.pages.pageNo== i+1}}active{{/if}}">
+          <a href="#/list_limit?pageNo=<%= i+1 %>&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=i+1%></a>
+        </li>
         <% } %>
+
+        {{else}}
+
+        <li class="{{if data.pages.pageNo==1}}active{{/if}}">
+          <a href="#/list_limit?pageNo=1&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=1%></a>
+        </li>
+        <!-- <li class="{{if data.pages.pageNo==2}}active{{/if}}">
+          <a href="#/list_limit?pageNo=2&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=2%></a>
+        </li> -->
+        {{if (data.pages.pageTotal-1)> data.pages.pageNo && data.pages.pageNo>2}}
+        <li><a href="javascript:;">...</a></li>
+        <li>
+            <a href="#/list_limit?pageNo={{data.pages.pageNo-1}}&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=data.pages.pageNo-1%></a>
+        </li>
+        <li class="active">
+          <a href="#/list_limit?pageNo=data.pages.pageNo&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=data.pages.pageNo%></a>
+        </li>
+        <li>
+            <a href="#/list_limit?pageNo={{~~data.pages.pageNo+1}}&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%= ~~data.pages.pageNo+1%></a>
+        </li>
+        <li><a href="javascript:;">...</a></li>
+        {{else}}
+        <li><a href="javascript:;">...</a></li>
+        {{/if}}
+        <!-- <li class="{{if data.pages.pageNo== data.pages.pageTotal-1}}active{{/if}}">
+          <a href="#/list_limit?pageNo=<%=data.pages.pageTotal-1 %>&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=data.pages.pageTotal-1%></a>
+        </li> -->
+        <li class="{{if data.pages.pageNo==data.pages.pageTotal}}active{{/if}}">
+          <a href="#/list_limit?pageNo=<%=data.pages.pageTotal%>&pageSize=<%=data.pages.pageSize%>&keyword={{data.pages.keyword}}"><%=data.pages.pageTotal%></a>
+        </li>
+
+        {{/if}}
+
         <li><a href="#/list_limit?pageNo={{if data.pages.pageNo==data.pages.pageTotal}}{{data.pages.pageTotal}}{{else}}{{~~data.pages.pageNo+1}}{{/if}}&&keyword={{data.pages.keyword}}" id="nextpage" >&raquo;</a></li>
       </ul>
     </div>

@@ -29,7 +29,9 @@ const list = (_filter={}) => {  //从数据库里查找数据
 const save = ( body )=>{
     let _timestamp = Date.now()
     let moment = Moment(_timestamp)//传入一个时间戳
-
+    if(!body.showPoster){
+        body.showPoster = '/showPoster/default1.png'
+    }
     return new ShowModel({
         ...body,
         newTime:_timestamp,
@@ -52,8 +54,8 @@ const remove = async ({id,pageNo,pageSize,keyword=''}) => { //从数据库里查
         let fillter = await find({keyword})
         let all_item = await list()
         let _isBack = (pageNo-1)*pageSize >= (keyword?fillter.length:all_item.length)  //all_item.length 是删除之后的数据
-        console.log(_isBack,!!keyword)
-        if(_row.showPoster){
+        
+        if(_row.showPoster && _row.showPoster != '/showPoster/default1.png'){
             fs.removeSync(PATH.resolve(__dirname, '../public'+_row.showPoster))
         }
         results = {
@@ -104,7 +106,7 @@ const alter = async (body)=>{
 const find = ({keyword})=>{
     let _filter = {
         $or: [  // 多字段同时匹配
-            {showItem: {$regex: keyword}},
+            {showItem: {$regex: keyword,$options: '$i'}},
             {showStart: {$regex: keyword, $options: '$i'}}, //  $options: '$i' 忽略大小写
             {showSite: {$regex: keyword, $options: '$i'}},
             {advanceTicket: {$regex: keyword, $options: '$i'}},
