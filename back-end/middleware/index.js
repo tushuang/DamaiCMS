@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken')
 
 const setResHeader = (req,res,next)=>{
     res.set('content-type', 'application/json; charset=utf8')
@@ -6,9 +6,12 @@ const setResHeader = (req,res,next)=>{
 }
 
 const userSigninAuth = (req,res,next)=>{
-    if(req.session.userid){
+    try{
+        var decoded = jwt.verify(req.cookies.token, 'i love u'); 
+        // 解密后将东西挂在req上
+        req.token = decoded
         next()
-    }else{
+    }catch(e){
         res.render('user',{ code:403,data:JSON.stringify('登录可能过期请重新登录')})
     }
 }

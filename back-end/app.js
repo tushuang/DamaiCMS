@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var session = require('express-session')
+
 
 
 var showRouter = require('./routes/show_list')
@@ -12,18 +12,6 @@ var adminRouter = require('./routes/admin')
 var userRouter = require('./routes/user')
 
 var app = express();
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {  // set cookie使让浏览器怎样存cookie
-    path: '/', 
-    httpOnly: true, 
-    secure: false, 
-    maxAge: 1000 * 60 * 60 * 24  // session的过期的时间 。。ms 
-  }
-}))
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
