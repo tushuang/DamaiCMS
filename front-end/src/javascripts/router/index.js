@@ -3,6 +3,8 @@ import bus from '../util/bus'
 import home_template from '../views/home_view.html' 
 import notFound_template from '../views/404.html' 
 import notPower_template from '../views/noPower.html'
+
+import profile_controller from '../contollers/profile'
 import show_controller from '../contollers/show' 
 import map_controller from "../contollers/map";
 
@@ -19,15 +21,15 @@ const _init = () => {
         _activeLink(req.route)
     })
 
-    router.use((req,res,next)=>{ 
-        page_header_controller.render(page_header_model.pageMes(req.url,preUrl))
-        //在这里页面没有发生跳转 所有这里的url是之前的url
-        preUrl=req.url
-    })
-
+    // router.use((req,res,next)=>{ 
+    //     page_header_controller.render(page_header_model.pageMes(req.url,preUrl))
+    //     //在这里页面没有发生跳转 所有这里的url是之前的url
+    //     preUrl=req.url
+    // })
+ 
 
     // 所有的页面都会匹配到这个
-    // router.route('/#/',page_header_render)
+    router.route('/',page_header_render)
 
     router.route('/home', (req, res, next) => { // 当路由切换进来的时候执行
         res.render(home_template)
@@ -35,7 +37,7 @@ const _init = () => {
     // router.route('/show',show_controller.list)
     router.route('/list_limit',show_controller.listLimit)
     router.route('/show-alter',show_controller.alter)
-    
+    router.route('/profile',profile_controller.render)
     router.route('/map',map_controller.map)
     router.route('/find',show_controller.find)
     router.route('/show-save',show_controller.save)
@@ -66,7 +68,7 @@ const _activeLink = (route)=>{
     $navs.filter(`[to='${route}']`)
         .addClass('active')
         .siblings()
-        .removeClass('active')
+        .removeClass('active') 
 }
 //渲染页面头部的函数
 const page_header_render = (req,res,next)=>{ 

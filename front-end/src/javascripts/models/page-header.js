@@ -5,7 +5,7 @@ import URL from 'url'
 //根据地址来做相应的匹配
 const pageMes = (url,preurl)=>{
     let urlInfo = URL.parse(url)
-    let _search = URL.parse(preurl).search
+    let _search = URL.parse(preurl).search? URL.parse(preurl).search:''
     let _url = urlInfo.pathname
     let _data = {
         '/home':{
@@ -40,7 +40,21 @@ const pageMes = (url,preurl)=>{
             list:[
                 {text:'地图',path:'#/map'}
             ]
-        }
+        },
+        '/profile':{
+            title:"个人中心",
+            list:[
+                {text:'个人中心',path:'#/profile'}
+            ]
+        },
+        '/notFound':{
+            title:"404",
+            list:[]
+        },
+        '/notPower':{
+            title:"警告",
+            list:[]
+        },
     }
 
     return _data[_url] || {}

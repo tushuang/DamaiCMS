@@ -8,9 +8,9 @@ const body_template = require('./views/body_view.html')
 
 
 //判断用户是否登录 调用 工具 auth
-
+  $('#wrapper').html(body_template)
 auth.userSigninAuth(()=>{
-    $('#wrapper').html(body_template)
+  
     userInfo_controller.render()
     router.init()
     

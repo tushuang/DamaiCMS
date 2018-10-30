@@ -29,10 +29,10 @@ const signup = (body)=>{
     console.log(_password)
     return new adminModel({
         name:body.name,
-        email:body.email,
+        email:body.email, 
         password:_password,
         creatTime:_timestamp,
-        portrait:'/showPoster/default1.png',
+        portrait:'/portrait/default1.png',
         formatTime:moment.format("YYYY-MM-DD, hh:mm"),
         level:5
     }).save()
@@ -41,7 +41,7 @@ const signup = (body)=>{
     }).catch((err)=>{
         return err
     })
-}
+} 
 const findone = (email) => {
     return adminModel
     .find({ email:email })

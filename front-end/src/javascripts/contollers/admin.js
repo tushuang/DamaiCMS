@@ -50,7 +50,7 @@ const bindEvent = () => {
     $('#login').on('submit','#signIn',async function (e) {
         e.preventDefault()  // 阻止表单的默认提交事件
         // 删除本地cookie值 防止重新登录时 不会重新刷新cookie
-        // $.cookie('connect.sid',null)
+        $.cookie('connect.sid',{expires: -1})
         let _param = $(this).serialize()
         $.cookie('connect.sid', { expires: -1 })
         console.log(qs.parse(_param))

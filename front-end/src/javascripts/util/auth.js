@@ -6,7 +6,6 @@ let _none = ()=>{}
 // 请求服务器判断是否已经登录
 const userSigninState = async ()=>{  //用户是否登录的状态
     let _data = await user_model.isSignIn()
-    console.log(_data,!!(_data.code == 200))
     return !!(_data.code == 200)
 }
 

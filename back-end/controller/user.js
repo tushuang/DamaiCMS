@@ -1,4 +1,5 @@
 const user_model = require('../models/user')
+const {handleData} = require('../util/handleData')
 
 const isSignIn = (req,res)=>{
     // 查看身上有没有req.session.userid
@@ -23,7 +24,6 @@ const exit = async (req,res)=>{
 }
 
 const isAllow = async (req,res)=>{
-    res.set('content-type', 'application/json; charset=utf8')
     const _data = await user_model.getUserInfo(req.session.userid)
     const _isAllow = await user_model.isAllow()[req.query.page]
     if(_data.level >= _isAllow ){
@@ -34,10 +34,17 @@ const isAllow = async (req,res)=>{
 
 }
 
+const alter = async (req,res)=>{
+    console.log(req.body,2222222 )
+    const _data = await user_model.alter(req.session.userid,req.body)
+    handleData(_data,res,'user')
+}
+
 
 module.exports = {
     isSignIn,
     getUserInfo,
     exit,
-    isAllow
+    isAllow,
+    alter
 }

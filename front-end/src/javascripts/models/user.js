@@ -35,10 +35,22 @@ const isAllow = ( page )=>{
         }
     })
 }
-
+const alter = ()=>{
+    return new Promise((resolve) => {
+        $('#alter-msg').ajaxSubmit({
+            url: '/api/user/alter',
+            type: 'POST',
+            success: (results) => {
+                resolve(results)
+            },
+            error: function (e) { console.log('提交失败') } //提交失败执行的函数
+        })
+    })
+}
 export default {
     isSignIn,
     getUserInfo,
     exit,
-    isAllow
+    isAllow,
+    alter
 }

@@ -5,6 +5,7 @@ import show_models from '../models/show'
 import bus from '../util/bus'
 import qs from 'querystring'
 import {isAllow} from '../util/isAllow'
+import {handleImg} from '../util/handleImg'
 
 //引入工具
 import handleTip from '../util/handleTip'
@@ -99,7 +100,7 @@ const save = async (req,res) => {
     }else{
         await res.render(show_save)
         formEvent()
-        handleImg()
+        handleImg("showPoster")
     }
     
 }
@@ -125,32 +126,32 @@ const formEvent = () => {
     })
 }
 
-const handleImg = ()=>{
-    //预览图片
-    function changepic() {
-        let _img = document.getElementById('showImg')
-        var reads= new FileReader();
+// const handleImg = ()=>{
+//     //预览图片
+//     function changepic() {
+//         let _img = document.getElementById('showImg')
+//         var reads= new FileReader();
 
-        let f=document.getElementById('showPoster').files[0];
-        try{
-            reads.readAsDataURL(f);
-        }catch(e){
-            _img.src='';
-            $(_img).css({
-                'width':"0px",
-                'height':"0px"
-            })
-        }
-        reads.onload=function (e) {
-            _img.src=this.result;
-            $(_img).css({
-                'width':"78px",
-                'height':"78px"
-            })
-        }
-    }
-    window.changepic = changepic;
-}
+//         let f=document.getElementById('showPoster').files[0];
+//         try{
+//             reads.readAsDataURL(f);
+//         }catch(e){
+//             _img.src='';
+//             $(_img).css({
+//                 'width':"0px",
+//                 'height':"0px"
+//             })
+//         }
+//         reads.onload=function (e) {
+//             _img.src=this.result;
+//             $(_img).css({
+//                 'width':"78px",
+//                 'height':"78px"
+//             })
+//         }
+//     }
+//     window.changepic = changepic;
+// }
 
 //修改信息
 const alter = async (req,res)=>{
@@ -167,7 +168,7 @@ const alter = async (req,res)=>{
         })
         await res.render(html)
         alterFormEvent()
-        handleImg()
+        handleImg("showPoster")
     }
     
 }
