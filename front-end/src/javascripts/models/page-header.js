@@ -55,6 +55,12 @@ const pageMes = (url,preurl)=>{
             title:"警告",
             list:[]
         },
+        '/administrator':{
+            title:"管理管理员",
+            list:[
+                {text:'管理员列表',path:'#/administrator'}
+            ]
+        },
     }
 
     return _data[_url] || {}

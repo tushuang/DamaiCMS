@@ -11679,7 +11679,7 @@ hr.dots:before {
 #register .owl-login {
     width: 211px;
     height: 108px;
-    background-image: url(http://www.jq22.com/demo/jQuery-login20160222/images/owl-login.png);
+    background-image: url(../images/bird.png);
     position: absolute;
     top: -100px;
     left: 50%;
@@ -11763,7 +11763,7 @@ hr.dots:before {
     position: absolute;
     left: 20px;
     top: 40px;
-    background-image: url(http://www.jq22.com/demo/jQuery-login20160222/images/owl-login-arm.png);
+    background-image: url(../images/owl-login-arm.png);
     -webkit-transition: .3s ease-out;
     -moz-transition: .3s ease-out;
     -o-transition: .3s ease-out;

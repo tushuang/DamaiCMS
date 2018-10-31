@@ -64,7 +64,7 @@ const bindEvent = () => {
                     location.href='/'
                 }
             })  
-        }else if(_data.code == 202){
+        }else if(_data.code == 203){
             zeroModal.error({
                 content:_data.data
             })  

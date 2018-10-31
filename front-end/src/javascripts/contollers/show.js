@@ -86,6 +86,7 @@ const listLimit = async (req,res) => {
         let html = template.render(show_template, {
             data: _data.data
         })
+        
         await res.render(html)
         $('#keywords').val(_params.keyword)
         bindEvent(_params)
@@ -126,33 +127,6 @@ const formEvent = () => {
     })
 }
 
-// const handleImg = ()=>{
-//     //预览图片
-//     function changepic() {
-//         let _img = document.getElementById('showImg')
-//         var reads= new FileReader();
-
-//         let f=document.getElementById('showPoster').files[0];
-//         try{
-//             reads.readAsDataURL(f);
-//         }catch(e){
-//             _img.src='';
-//             $(_img).css({
-//                 'width':"0px",
-//                 'height':"0px"
-//             })
-//         }
-//         reads.onload=function (e) {
-//             _img.src=this.result;
-//             $(_img).css({
-//                 'width':"78px",
-//                 'height':"78px"
-//             })
-//         }
-//     }
-//     window.changepic = changepic;
-// }
-
 //修改信息
 const alter = async (req,res)=>{
     // console.log(req.body)  //body身上有了一个对象  {_id: "5bcff9f24b2ef61d187a15f2"}
@@ -191,5 +165,5 @@ export default{
     save,
     alter,
     find,
-    listLimit
+    listLimit  
 }

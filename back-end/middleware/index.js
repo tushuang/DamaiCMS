@@ -17,11 +17,21 @@ const userSigninAuth = (req,res,next)=>{
         jwt.verify(req.cookies.token, publicKey, (error, decoded) => {
             if (error) {
                 console.log(error.message)
+                res.render('user',{ code:403,data:JSON.stringify('出现了不可以预知的错误 请重新登录')})
                 return
             }
-            console.log(decoded,333)
-            req.token = decoded
-            next()
+            let _time =  (Date.now() / 1000) - decoded.iat // 验证用户请求的过期时间 以秒为单位
+            console.log(_time,'time2222222')
+            let _expires = 1*60*60 // 表示三十秒
+            if ( _time > _expires ) {
+                res.render('user', {
+                    code: 403,
+                    data: JSON.stringify({ msg: '登录过期，请重新登录' })
+                })
+            } else {
+                req.token = decoded
+                next()
+            }        
         })
         // 对称加密
         //var decoded = jwt.verify(req.cookies.token, 'i love u'); 

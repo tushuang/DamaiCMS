@@ -11,7 +11,14 @@ const isSignIn = (req,res)=>{
 const getUserInfo = async (req,res)=>{  // 得到用户信息
     // 根据id查找数据
     const _data = await user_model.getUserInfo(req.token.userid)
-    res.render('user',{code:200,data:JSON.stringify({ name:_data.name,email:_data.email,time:_data.formatTime,portrait:_data.portrait})})
+    res.render('user',{code:200,data:JSON.stringify({ 
+        name:_data.name,
+        email:_data.email,
+        time:_data.formatTime,
+        portrait:_data.portrait,
+        level:_data.level,
+        id:_data._id
+    })})
 }
 
 const exit = async (req,res)=>{
@@ -21,7 +28,8 @@ const exit = async (req,res)=>{
 }
 
 const isAllow = async (req,res)=>{
-    const _data = await user_model.getUserInfo(req.cookies.token._id)
+    // 解密后 再访问
+    const _data = await user_model.getUserInfo(req.token.userid)
     const _isAllow = await user_model.isAllow()[req.query.page]
     if(_data.level >= _isAllow ){
         res.render('user',{code:200,data:JSON.stringify('允许操作')})

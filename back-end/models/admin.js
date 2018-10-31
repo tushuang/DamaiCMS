@@ -33,7 +33,7 @@ const signup = (body)=>{
         password:_password,
         creatTime:_timestamp,
         portrait:'/portrait/default1.png',
-        formatTime:moment.format("YYYY-MM-DD, hh:mm"),
+        formatTime:moment.format("YYYY-MM-DD"),
         level:5
     }).save()
     .then((result)=>{

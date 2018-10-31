@@ -22,7 +22,8 @@ const isAllow = () => {
         'list_limit': 5,
         'list-remove': 6,
         'show-save':5,
-        'list-alter':6
+        'list-alter':6,
+        'administrator':10
     }
 }
 
