@@ -3,7 +3,6 @@ import user_models from '../models/user'
 const render = async ()=>{
     await $('#userInfo').html(userInfo_view)
     let _data = await user_models.getUserInfo()
-    console.log(_data)
     $('#userInfo .userName').html(_data.data.name)
     $('#userInfo .portrait').prop('src','http://localhost:3000'+_data.data.portrait)
     $('#userInfo .time').html(_data.data.time)

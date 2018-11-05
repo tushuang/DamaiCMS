@@ -4,7 +4,6 @@ import {handleImg} from '../util/handleImg'
 
 const render = async (req,res)=>{
     let _data = await user_models.getUserInfo()
-    console.log(_data)
     var _html = template.render(profile_template,{data:_data.data})
     await res.render(_html)
     handleImg("portrait")
@@ -15,7 +14,6 @@ const BindEvent = ()=>{
     $("#alter-msg").on('submit',async function(e){
         e.preventDefault()
         let _data = await user_models.alter()
-        console.log(_data)
         if(_data.code == 200){
             zeroModal.success({
                 content:'修改成功',

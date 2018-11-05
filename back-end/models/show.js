@@ -117,7 +117,6 @@ const find = ({keyword})=>{
     return ShowModel.find(_filter)
     .sort({newTime: -1})  //排序
     .then((result)=>{
-        console.log('find:',result)
         return result     
       }).catch((err)=>{
         return false
@@ -130,7 +129,6 @@ const listLimit = async ({
     pageSize,
     keyword
 }) => {
-    console.log(pageNo,pageSize,keyword)
     let _filter = keyword? {
         $or: [  // 多字段同时匹配
             {showItem: {$regex: keyword}},

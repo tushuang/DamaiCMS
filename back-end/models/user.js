@@ -7,7 +7,6 @@ const PATH = require('path') // 时间格式化
 const getUserInfo = (id)=>{
     return adminModel.findById(id)
             .then((results)=>{
-                console.log(results)
                 return results
             }).catch((err)=>{
                 return err
@@ -38,7 +37,6 @@ const alter = async (id,body)=>{
     }
     return adminModel.updateOne({_id:id},{...body})
     .then((result)=>{
-        console.log(result)
         return result       //渲染好后再给前端
       })
       .catch((err)=>{ 

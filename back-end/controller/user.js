@@ -40,8 +40,7 @@ const isAllow = async (req,res)=>{
 }
 
 const alter = async (req,res)=>{
-    console.log(req.body,2222222 )
-    const _data = await user_model.alter(req.session.userid,req.body)
+    const _data = await user_model.alter(req.token.userid,req.body)
     handleData(_data,res,'user')
 }
 

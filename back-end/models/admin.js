@@ -26,7 +26,6 @@ const signup = (body)=>{
      //把hash值赋值给password变量
     let _password = hash;
     let moment = Moment(_timestamp)//传入一个时间戳
-    console.log(_password)
     return new adminModel({
         name:body.name,
         email:body.email, 

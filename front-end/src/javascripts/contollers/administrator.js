@@ -16,7 +16,6 @@ const list = async (req,res,next)=>{
             userInfo:_userInfo.data
         })
         // userInfo()
-        console.log(_data.data.length)
         await res.render(_html)
         BindEvent()
     }
@@ -29,12 +28,10 @@ const BindEvent = ()=>{
         let _level_dom = $(this).parents().eq(1).children().eq(3)
         let _level_val = _level_dom.text()
         _level_dom.html(_str)
-        console.log(_level_val)
         $('#input-level').val(_level_val )
         $('#input-level').focus()
         let _id = $(this).parents().eq(1).children().eq(0).text()
         $('#input-level').on('blur',async ()=>{
-            console.log(1,_id)
             let _value = $('#input-level').val()
             if( _value!=_level_val ){
                 zeroModal.confirm({
@@ -76,7 +73,6 @@ const userInfo =async ()=>{
     let _email = _userInfo.data.email
     $('.userEmail').each(function(){
         if($(this).html() ==_email ){
-            console.log($(this))
             $(this).siblings().eq(4).html("") 
         }
     })

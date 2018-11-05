@@ -38,7 +38,7 @@ window.onApiLoaded = function () {
         geolocation.getCurrentPosition(function(status,result){
             if(status=='complete'){
                 // onComplete(result)
-                console.log(result)  //得到精准定位
+               //得到精准定位
                 resolve(result) 
             }else{
                 onError(result)
@@ -46,8 +46,8 @@ window.onApiLoaded = function () {
         });
     })}).then((result)=>{
         map.panTo(result.position);
-        console.log('ok')
-        console.log('定位结果：' + result.position);
+       
+        // console.log('定位结果：' + result.position);
        // 地理编码，将经纬度处理成地址
     //    regeoCode(result.position)
        // 移动到定位位置

@@ -15,7 +15,6 @@ const init = () => {
 const bindEvent = () => {
     $('#login').on('click', 'a', function () {
         let _type = $(this).data('type')
-        console.log(_type)
         render(_type, $(this))
     })
     //使用事件代理 点击切换后 页面的dom元素不再是之前的元素 
@@ -29,9 +28,7 @@ const bindEvent = () => {
     $('#login').on('submit','#signUp',async function (e) {
         e.preventDefault()  // 阻止表单的默认提交事件
         let _param = $(this).serialize()
-        console.log(qs.parse(_param))
         let _data = await admin_model.signUp(qs.parse(_param))
-        console.log(_data.code)
         if(_data.code == 200){
             // 表示注册成功 可跳入登录界面
             zeroModal.success({
@@ -53,9 +50,7 @@ const bindEvent = () => {
         $.cookie('connect.sid',{expires: -1})
         let _param = $(this).serialize()
         $.cookie('connect.sid', { expires: -1 })
-        console.log(qs.parse(_param))
         let _data = await admin_model.signIn(qs.parse(_param))
-        console.log(_data.code)
         if(_data.code == 200){
             // 表示登录 存一个
             zeroModal.success({

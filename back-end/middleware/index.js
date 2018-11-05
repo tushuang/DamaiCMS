@@ -16,12 +16,10 @@ const userSigninAuth = (req,res,next)=>{
         // 验证 Token
         jwt.verify(req.cookies.token, publicKey, (error, decoded) => {
             if (error) {
-                console.log(error.message)
                 res.render('user',{ code:403,data:JSON.stringify('出现了不可以预知的错误 请重新登录')})
                 return
             }
             let _time =  (Date.now() / 1000) - decoded.iat // 验证用户请求的过期时间 以秒为单位
-            console.log(_time,'time2222222')
             let _expires = 1*60*60 // 表示三十秒
             if ( _time > _expires ) {
                 res.render('user', {

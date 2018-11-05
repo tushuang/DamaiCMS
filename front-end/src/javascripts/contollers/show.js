@@ -121,7 +121,7 @@ const formEvent = () => {
         let _data = await show_models.save()
         _flag = false
         handleTip(_data,{success:()=>{  
-            $("#save-form button[type=reset]").trigger("click");
+            // $("#save-form button[type=reset]").trigger("click");
         }})
         
     })

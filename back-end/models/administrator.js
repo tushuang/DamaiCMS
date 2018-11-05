@@ -8,7 +8,6 @@ const list = ()=>{
         .then((results)=>{
             // 去掉用户的密码 
             const _obj = results;
-            console.log(_obj.length)
             for(let i=0;i<_obj.length; i++){
                 _obj[i]={
                     _id : _obj[i]._id,
