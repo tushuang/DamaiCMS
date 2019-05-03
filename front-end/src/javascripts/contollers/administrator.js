@@ -10,12 +10,12 @@ const list = async (req,res,next)=>{
     }else{
         const _data = await adm_model.list()
         let _userInfo = await userInfo_model.getUserInfo()
+        console.log('data===>',_data,_userInfo)
         let _email = _userInfo.data.email
         const _html = template.render(adm_template,{
             data:_data.data,
             userInfo:_userInfo.data
         })
-        // userInfo()
         await res.render(_html)
         BindEvent()
     }

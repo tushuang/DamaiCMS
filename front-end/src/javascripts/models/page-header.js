@@ -61,6 +61,18 @@ const pageMes = (url,preurl)=>{
                 {text:'管理员列表',path:'#/administrator'}
             ]
         },
+        '/userList':{
+            title:"用户列表",
+            list:[
+                {text:'用户列表',path:'#/userList'}
+            ]
+        },
+        '/orderList':{
+            title:"查看订单",
+            list:[
+                {text:'查看订单',path:'#/orderList'}
+            ]
+        },
     }
 
     return _data[_url] || {}

@@ -46,9 +46,9 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li to="/home" ><a href="javascript:;"><i class="fa fa-laptop"></i> <span>首页</span></a></li>
+        <!-- <li to="/home" ><a href="javascript:;"><i class="fa fa-laptop"></i> <span>首页</span></a></li> -->
         <li to="/profile" ><a href="javascript:;"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="javascript:;"><i class="fa fa-edit"></i> <span>演出详情</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -57,6 +57,28 @@
           <ul class="treeview-menu">
             <li to="/list_limit"><a href="javascript:;">演出列表</a></li>
             <li to="/show-save"><a href="javascript:;">添加演出</a></li>
+          </ul>
+        </li> -->
+        <li class="treeview">
+          <a href="javascript:;"><i class="fa fa-edit"></i> <span>查看用户</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li to="/userList"><a href="javascript:;">用户列表</a></li>
+            <!-- <li to="/administrator-add"><a href="javascript:;">查看权限</a></li> -->
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;"><i class="fa fa-edit"></i> <span>查看订单</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li to="/orderList"><a href="javascript:;">订单列表</a></li>
+            <!-- <li to="/administrator-add"><a href="javascript:;">查看权限</a></li> -->
           </ul>
         </li>
         <li class="treeview">
@@ -67,9 +89,8 @@
             </a>
             <ul class="treeview-menu">
               <li to="/administrator"><a href="javascript:;">管理员列表</a></li>
-              <!-- <li to="/administrator-add"><a href="javascript:;">查看权限</a></li> -->
             </ul>
-          </li>
+        </li>
         <li to="/map" ><a href="javascript:;"><i class="fa fa-share"></i> <span>地图</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

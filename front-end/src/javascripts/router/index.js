@@ -8,6 +8,8 @@ import profile_controller from '../contollers/profile'
 import show_controller from '../contollers/show' 
 import map_controller from "../contollers/map";
 import adm_controller from '../contollers/administrator'
+import user_controller from '../contollers/userList'
+import order_controller from '../contollers/orderList'
 
 import page_header_controller from "../contollers/page-header"
 import page_header_model from '../models/page-header'
@@ -43,6 +45,8 @@ const _init = () => {
     router.route('/find',show_controller.find)
     router.route('/show-save',show_controller.save)
     router.route('/administrator',adm_controller.list)
+    router.route('/userList',user_controller.list)
+    router.route('/orderList',order_controller.list)
     router.route('/notFound',(req,res)=>{
         res.render(notFound_template)
     })

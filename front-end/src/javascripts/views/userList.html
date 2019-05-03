@@ -20,27 +20,20 @@
             <tbody>
               <tr>
                 <th>ID</th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Level</th>
-                <th>Email</th>
-                <th style="width: 140px"><%data%></th>
+                <th>账号</th>
+                <th>购买票数</th>
+                <th>消费总额</th>
               </tr>
 
 
-            <% for(let i=0;i < data.length;i++){%>
+            <!-- <% for(let i=0;i < data.length;i++){%>
             <tr>
-              <td><%= data[i]._id %></td>
-              <td><%= data[i].name %></td>
-              <td><%=data[i].formatTime%></td>
-              <td class="level"><span class="label label-success"><%=data[i].level%></span></td>
-              <td class="userEmail"><%=data[i].email%></td>
-              <td>
-                <button class="btn btn-sm btn-primary pos-alter alter-level" ><span class="fa fa-edit"></span>修改</button>
-                <button class="btn btn-sm btn-danger pos-remove remove-admin"><span class="fa fa-remove"></span>移除</button>
-              </td>  
+              <td><%= data[i].userid %></td>
+              <td><%= data[i].username %></td>
+              <td><%= data[i].price %></td>
+              <td><%=data[i].targetNum%></td>
             </tr>
-            <%}%>
+            <%}%> -->
           </tbody></table>
         </div>
         <!-- /.box-body -->
