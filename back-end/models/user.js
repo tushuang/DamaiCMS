@@ -18,11 +18,11 @@ const getUserInfo = (id)=>{
 const isAllow = () => {
     return {
         'map': 2,
-        'list_limit': 5,
-        'list-remove': 6,
-        'show-save':5,
-        'list-alter':6,
-        'administrator':10
+        'list_limit': 4,
+        'list-remove': 4,
+        'show-save':4,
+        'list-alter':4,
+        'administrator':4
     }
 }
 
