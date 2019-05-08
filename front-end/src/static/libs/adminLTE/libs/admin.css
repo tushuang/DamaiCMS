@@ -11695,7 +11695,7 @@ hr.dots:before {
 
     #login .owl-login,
     #register .owl-login {
-        background-image: url(../images/owl-login@2x.png);
+        background-image: url(../images/bird.png);
         -webkit-background-size: 211px 108px;
         -moz-background-size: 211px 108px;
         background-size: 211px 108px
@@ -11785,7 +11785,7 @@ hr.dots:before {
 
     #login .owl-login .arms .arm,
     #register .owl-login .arms .arm {
-        background-image: url(../images/owl-login-arm@2x.png);
+        background-image: url(../images/owl-login-arm.png);
         -webkit-background-size: 40px 65px;
         -moz-background-size: 40px 65px;
         background-size: 40px 65px

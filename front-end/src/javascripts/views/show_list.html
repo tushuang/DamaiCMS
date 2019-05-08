@@ -19,6 +19,7 @@
         <tr>
           <th style="width: 10px">#</th>
           <th>电影名</th>
+          <th>评分</th>
           <th>海报</th>
           <th>演出明星</th>
           <th>演出地点</th>
@@ -30,6 +31,7 @@
         {{each data.result}}
         <tr data-id="{{$value._id}}">
           <td>{{$index}}</td>
+          <td>{{$value.showNm}}</td>
           <td>{{$value.showItem}}</td>
           <td><img width="50" height="50" src="http://localhost:3000{{$value.showPoster}}" alt=""></td>
           <td>{{$value.showStart}}</td>

@@ -6,10 +6,10 @@
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+              <input id="name" type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
               <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                <button type="submit" id="orderSearch" class="btn btn-default"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </div>
@@ -20,6 +20,7 @@
             <tbody>
               <tr>
                 <th>订单号</th>
+                <th>用户id</th>
                 <th>影院</th>
                 <th>电影名</th>
                 <th>票数</th>
@@ -29,19 +30,38 @@
               </tr>
 
 
-            <!-- <% for(let i=0;i < data.length;i++){%>
+            <% for(let i=0;i < data.result.length;i++){%>
             <tr>
-              <td><%= data[i].id %></td>
-              <td><%= data[i].cinemaNm %></td>
-              <td><%= data[i].nm %></td>
-              <td><%=data[i].seatNum%></td>
-              <td><%= data[i].position %></td>
-              <td><%= data[i].price %></td>
-              <td><%=data[i].time%></td>
+              <td><%= data.result[i].orderId %></td>
+              <td><%= data.result[i].userId %></td>
+              <td><%= data.result[i].cinemaNm %></td>
+              <td><%= data.result[i].nm %></td>
+              <td><%=data.result[i].seatNum%></td>
+              <td>
+                <% for( var j=0; j < data.result[i].seat.length; j++) {%>
+                  <%=data.result[i].seat[j][0]%>排<%=data.result[i].seat[j][1]%>座
+                <% } %>
+              </td>
+              <td><%= data.result[i].price %></td>
+              <td><%=data.result[i].time%></td>
+              <td>
+                  <button class="btn btn-sm btn-danger pos-remove remove-order" onclick="removeOrder('a')"><span class="fa fa-remove"></span>移除</button>
+              </td> 
             </tr>
-            <%}%> -->
+            <%}%>
           </tbody></table>
         </div>
+        <!-- <div class="box-footer clearfix">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a href="#" id="prepage" >&laquo;</a></li>
+            <% for( var i=0; i < data.resultPage; i++) {%>
+              <li id="toTargetPage" class="{{if data.pageNo== i+1}}active{{/if}}">
+                <a class="{{i+1}}"><%=i+1%></a>
+              </li>
+              <% } %>
+            <li><a href="" id="nextpage" >&raquo;</a></li>
+          </ul>
+        </div> -->
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
