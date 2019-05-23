@@ -30,20 +30,20 @@
               </tr>
 
 
-            <% for(let i=0;i < data.result.length;i++){%>
+            <% for(let i=0;i < data.length;i++){%>
             <tr>
-              <td><%= data.result[i].orderId %></td>
-              <td><%= data.result[i].userId %></td>
-              <td><%= data.result[i].cinemaNm %></td>
-              <td><%= data.result[i].nm %></td>
-              <td><%=data.result[i].seatNum%></td>
+              <td><%= data[i].orderId %></td>
+              <td><%= data[i].userId %></td>
+              <td><%= data[i].cinemaNm %></td>
+              <td><%= data[i].nm %></td>
+              <td><%=data[i].seatNum%></td>
               <td>
-                <% for( var j=0; j < data.result[i].seat.length; j++) {%>
-                  <%=data.result[i].seat[j][0]%>排<%=data.result[i].seat[j][1]%>座
+                <% for( var j=0; j < data[i].seat.length; j++) {%>
+                  <%=data[i].seat[j][0]%>排<%=data[i].seat[j][1]%>座
                 <% } %>
               </td>
-              <td><%= data.result[i].price %></td>
-              <td><%=data.result[i].time%></td>
+              <td><%= data[i].price %></td>
+              <td><%=data[i].time%></td>
               <td>
                   <button class="btn btn-sm btn-danger pos-remove remove-order" onclick="removeOrder('a')"><span class="fa fa-remove"></span>移除</button>
               </td> 

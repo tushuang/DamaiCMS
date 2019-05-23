@@ -9,14 +9,14 @@ const list = async (req, res, next) => {
   } else {
     let data = {
       pageNo: 1,
-      pageSize: 10,
+      pageSize: 1000,
       name: ""
     };
     const _data = await orderList_model.getorderList(data);
     _data.pageNo = data.pageNo;
-    console.log("_data====>", _data);
+    console.log("_data====>", _data.result.reverse());
     const _html = template.render(orderList_template, {
-      data: _data
+      data: _data.result
     });
     await res.render(_html);
     bindEvent(_data, res);
@@ -29,7 +29,7 @@ const bindEvent = (data, res) => {
     data.pageNo = 1;
     const _data = await orderList_model.getorderList({
       pageNo: 1,
-      pageSize: 10
+      pageSize: 1000
     });
     const _html = template.render(orderList_template, {
       data: _data
@@ -40,7 +40,7 @@ const bindEvent = (data, res) => {
     console.log("toTargetPage2=====>");
     const _data = await orderList_model.getorderList({
       pageNo: 2,
-      pageSize: 10
+      pageSize: 1000
     });
     const _html = template.render(orderList_template, {
       data: _data
@@ -80,7 +80,7 @@ const bindEvent = (data, res) => {
     //得到值之后发送ajax请求
     let data = {
       pageNo: 1,
-      pageSize: 10,
+      pageSize: 1000,
       name: _value ? _value : ""
     };
     const _data = await orderList_model.getorderList(data);
